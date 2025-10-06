@@ -1,0 +1,15 @@
+{
+  "watch": ["server.js", "controllers/", "models/", "routes/", "middleware/", "utils/"],
+  "ext": "js",
+  "ignore": ["node_modules/", "tests/", "*.test.js", "*.json", "*.md", "scripts/", "start-server.js"],
+  "delay": 5000,
+  "env": {
+    "NODE_ENV": "development"
+  },
+  "restartable": "rs",
+  "verbose": false,
+  "signal": "SIGTERM",
+  "legacyWatch": true,
+  "killTimeout": 5000,
+  "maxRestarts": 10
+}

@@ -1,0 +1,197 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
+All colors MUST be HSL.
+*/
+
+@layer base {
+  :root {
+    /* Cosmetics Brand Colors - Orange & Navy Blue Theme */
+    --background: 0 0% 100%;
+    --foreground: 220 91% 15%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 220 91% 15%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 220 91% 15%;
+
+    /* Primary - Deep Navy Blue */
+    --primary: 220 91% 15%;
+    --primary-foreground: 0 0% 98%;
+    --primary-light: 220 91% 25%;
+    --primary-lighter: 220 91% 35%;
+
+    /* Secondary - Vibrant Orange */
+    --secondary: 24 95% 60%;
+    --secondary-foreground: 0 0% 98%;
+    --secondary-light: 24 95% 70%;
+    --secondary-dark: 24 95% 50%;
+
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+
+    /* Accent - Coral Pink */
+    --accent: 14 91% 75%;
+    --accent-foreground: 220 91% 15%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 24 95% 60%;
+
+    --radius: 0.75rem;
+
+    /* Custom Brand Variables */
+    --hero-gradient: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--primary-light)));
+    --orange-gradient: linear-gradient(135deg, hsl(var(--secondary-dark)), hsl(var(--secondary)));
+    --coral-gradient: linear-gradient(135deg, hsl(var(--accent)), hsl(var(--secondary-light)));
+    
+    /* Shadows */
+    --shadow-brand: 0 10px 30px -10px hsl(var(--primary) / 0.3);
+    --shadow-orange: 0 10px 30px -10px hsl(var(--secondary) / 0.4);
+    --shadow-soft: 0 4px 20px -4px hsl(220 91% 15% / 0.1);
+
+    /* Animations */
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-bounce: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+
+    --sidebar-background: 0 0% 98%;
+
+    --sidebar-foreground: 240 5.3% 26.1%;
+
+    --sidebar-primary: 240 5.9% 10%;
+
+    --sidebar-primary-foreground: 0 0% 98%;
+
+    --sidebar-accent: 240 4.8% 95.9%;
+
+    --sidebar-accent-foreground: 240 5.9% 10%;
+
+    --sidebar-border: 220 13% 91%;
+
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+
+  .dark {
+    /* Dark Mode - Maintaining Orange & Navy Theme */
+    --background: 220 91% 8%;
+    --foreground: 0 0% 95%;
+
+    --card: 220 91% 10%;
+    --card-foreground: 0 0% 95%;
+
+    --popover: 220 91% 10%;
+    --popover-foreground: 0 0% 95%;
+
+    --primary: 24 95% 60%;
+    --primary-foreground: 220 91% 8%;
+    --primary-light: 24 95% 70%;
+    --primary-lighter: 24 95% 80%;
+
+    --secondary: 220 91% 25%;
+    --secondary-foreground: 0 0% 95%;
+    --secondary-light: 220 91% 35%;
+    --secondary-dark: 220 91% 15%;
+
+    --muted: 220 91% 15%;
+    --muted-foreground: 215 20.2% 65.1%;
+
+    --accent: 14 91% 75%;
+    --accent-foreground: 220 91% 8%;
+
+    --destructive: 0 62.8% 50.6%;
+    --destructive-foreground: 0 0% 95%;
+
+    --border: 220 91% 20%;
+    --input: 220 91% 20%;
+    --ring: 24 95% 60%;
+    --sidebar-background: 240 5.9% 10%;
+    --sidebar-foreground: 240 4.8% 95.9%;
+    --sidebar-primary: 224.3 76.3% 48%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 240 3.7% 15.9%;
+    --sidebar-accent-foreground: 240 4.8% 95.9%;
+    --sidebar-border: 240 3.7% 15.9%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+
+  /* Custom scrollbar */
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+  
+  ::-webkit-scrollbar-track {
+    @apply bg-muted;
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    @apply bg-primary/20 rounded-full;
+  }
+  
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-primary/40;
+  }
+}
+
+@layer components {
+  /* Brand Button Variants */
+  .btn-hero {
+    @apply bg-gradient-to-r from-orange-500 to-orange-600 text-white font-semibold py-3 px-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105;
+  }
+  
+  .btn-navy {
+    @apply bg-gradient-to-r from-primary to-primary-light text-white font-semibold py-3 px-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1;
+  }
+  
+  .btn-coral {
+    @apply bg-gradient-to-r from-accent to-secondary-light text-primary font-semibold py-3 px-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300;
+  }
+
+  /* Card Styles */
+  .card-elegant {
+    @apply bg-card border border-border/50 rounded-2xl shadow-soft backdrop-blur-sm transition-all duration-300 hover:shadow-lg hover:-translate-y-1;
+  }
+  
+  .card-product {
+    @apply bg-card border border-border/30 rounded-2xl shadow-soft overflow-hidden transition-all duration-300 hover:shadow-orange hover:-translate-y-2;
+  }
+
+  /* Text Gradients */
+  .text-gradient-orange {
+    @apply bg-gradient-to-r from-secondary-dark to-secondary bg-clip-text text-transparent;
+  }
+  
+  .text-gradient-navy {
+    @apply bg-gradient-to-r from-primary to-primary-light bg-clip-text text-transparent;
+  }
+
+  /* Animations */
+  .animate-float {
+    animation: float 6s ease-in-out infinite;
+  }
+  
+  .animate-pulse-slow {
+    animation: pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+  }
+}
