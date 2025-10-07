@@ -1,6 +1,5 @@
 import { getValidToken } from '@/utils/tokenValidation';
-
-const API_BASE_URL = 'http://localhost:5000/api';
+import { API_BASE_URL } from '@/config/api';
 
 // Helper function to get auth token
 const getAuthToken = (): string | null => {

@@ -1,0 +1,27 @@
+{
+  "version": 2,
+  "name": "radiant-bloom-frontend",
+  "builds": [
+    {
+      "src": "package.json",
+      "use": "@vercel/static-build",
+      "config": {
+        "distDir": "dist"
+      }
+    }
+  ],
+  "routes": [
+    {
+      "src": "/(.*)",
+      "dest": "/index.html"
+    }
+  ],
+  "env": {
+    "REACT_APP_API_URL": "https://143.110.253.120:5000/api"
+  },
+  "build": {
+    "env": {
+      "REACT_APP_API_URL": "https://143.110.253.120:5000/api"
+    }
+  }
+}
