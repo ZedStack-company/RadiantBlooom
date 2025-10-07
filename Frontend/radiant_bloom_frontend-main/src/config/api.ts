@@ -13,7 +13,11 @@ const getApiUrl = (): string => {
     return import.meta.env.REACT_APP_API_URL;
   }
   
-  // Fallback to localhost for development
+  // Fallback to HTTPS backend for production, HTTP for development
+  if (import.meta.env.PROD) {
+    return 'https://143.110.253.120:5000/api';
+  }
+  
   return 'http://localhost:5000/api';
 };
 
