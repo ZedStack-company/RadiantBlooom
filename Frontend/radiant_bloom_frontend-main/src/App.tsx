@@ -3,6 +3,7 @@ import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { testApiConfiguration } from "@/utils/apiTest";
 import Index from "./pages/Index";
 import Products from "./pages/Products";
 import CategoryProducts from "./pages/CategoryProducts";
@@ -22,11 +23,15 @@ import OrderDetail from "./pages/OrderDetail";
 
 const queryClient = new QueryClient();
 
-const App = () => (
-  <QueryClientProvider client={queryClient}>
-    <TooltipProvider>
-      <Toaster />
-      <Sonner />
+const App = () => {
+  // Debug API configuration
+  testApiConfiguration();
+  
+  return (
+    <QueryClientProvider client={queryClient}>
+      <TooltipProvider>
+        <Toaster />
+        <Sonner />
       
       <BrowserRouter
         future={{
@@ -58,6 +63,7 @@ const App = () => (
       </BrowserRouter>
     </TooltipProvider>
   </QueryClientProvider>
-);
+  );
+};
 
 export default App;

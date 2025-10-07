@@ -13,11 +13,22 @@ const getApiUrl = (): string => {
     return import.meta.env.REACT_APP_API_URL;
   }
   
-  // Fallback to HTTPS backend for production, HTTP for development
-  if (import.meta.env.PROD) {
+  // Check if we're in production mode
+  if (import.meta.env.PROD || import.meta.env.MODE === 'production') {
     return 'https://143.110.253.120:5000/api';
   }
   
+  // Check if we're on Vercel (Vercel sets VERCEL environment variable)
+  if (import.meta.env.VERCEL) {
+    return 'https://143.110.253.120:5000/api';
+  }
+  
+  // Check if we're on a production domain
+  if (typeof window !== 'undefined' && window.location.hostname !== 'localhost') {
+    return 'https://143.110.253.120:5000/api';
+  }
+  
+  // Fallback to localhost for development
   return 'http://localhost:5000/api';
 };
 

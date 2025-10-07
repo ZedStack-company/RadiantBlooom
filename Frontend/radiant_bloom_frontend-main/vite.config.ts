@@ -23,6 +23,7 @@ export default defineConfig(({ mode }) => ({
     // Define environment variables for Vite
     'import.meta.env.VITE_API_URL': JSON.stringify(process.env.VITE_API_URL || 'https://143.110.253.120:5000/api'),
     'import.meta.env.REACT_APP_API_URL': JSON.stringify(process.env.REACT_APP_API_URL || 'https://143.110.253.120:5000/api'),
+    'import.meta.env.VERCEL': JSON.stringify(process.env.VERCEL || 'true'),
   },
   build: {
     // Ensure environment variables are available at build time
