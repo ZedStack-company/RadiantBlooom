@@ -27,5 +27,20 @@ export default defineConfig(({ mode }) => ({
   build: {
     // Ensure environment variables are available at build time
     envPrefix: ['VITE_', 'REACT_APP_'],
+    // Optimize for production
+    minify: 'esbuild',
+    sourcemap: false,
+    // Ensure proper chunking
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          vendor: ['react', 'react-dom'],
+          router: ['react-router-dom'],
+          ui: ['@radix-ui/react-dialog', '@radix-ui/react-dropdown-menu'],
+        },
+      },
+    },
   },
+  // Ensure proper base path for Vercel
+  base: '/',
 }));
