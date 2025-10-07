@@ -15,17 +15,17 @@ const getApiUrl = (): string => {
   
   // Check if we're in production mode
   if (import.meta.env.PROD || import.meta.env.MODE === 'production') {
-    return 'https://143.110.253.120:5000/api';
+    return 'http://143.110.253.120:5000/api';
   }
   
   // Check if we're on Vercel (Vercel sets VERCEL environment variable)
   if (import.meta.env.VERCEL) {
-    return 'https://143.110.253.120:5000/api';
+    return 'http://143.110.253.120:5000/api';
   }
   
   // Check if we're on a production domain
   if (typeof window !== 'undefined' && window.location.hostname !== 'localhost') {
-    return 'https://143.110.253.120:5000/api';
+    return 'http://143.110.253.120:5000/api';
   }
   
   // Fallback to localhost for development
