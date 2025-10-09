@@ -3,21 +3,17 @@
 
 // Get API URL from environment variables with fallback
 const getApiUrl = (): string => {
-  // Force HTTP for backend since it doesn't support HTTPS
-  const backendUrl = 'http://143.110.253.120:5000/api';
+  // Use HTTPS for backend (now supports HTTPS)
+  const backendUrl = 'https://143.110.253.120:5000/api';
   
   // Check for Vite environment variable first (for Vite-based builds)
   if (import.meta.env.VITE_API_URL) {
-    // Convert HTTPS to HTTP if needed (backend doesn't support HTTPS)
-    const url = import.meta.env.VITE_API_URL;
-    return url.replace('https://', 'http://');
+    return import.meta.env.VITE_API_URL;
   }
   
   // Check for React environment variable (for Create React App compatibility)
   if (import.meta.env.REACT_APP_API_URL) {
-    // Convert HTTPS to HTTP if needed (backend doesn't support HTTPS)
-    const url = import.meta.env.REACT_APP_API_URL;
-    return url.replace('https://', 'http://');
+    return import.meta.env.REACT_APP_API_URL;
   }
   
   // Check if we're in production mode
