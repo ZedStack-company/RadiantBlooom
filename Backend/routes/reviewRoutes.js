@@ -6,6 +6,7 @@ const router = express.Router();
 // Public routes
 router.get('/', (req, res) => {
   res.json({ message: 'Get all reviews - to be implemented' });
+  //this is get request
 });
 
 router.get('/product/:productId', (req, res) => {
