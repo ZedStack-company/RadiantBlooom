@@ -31,8 +31,8 @@
     }
   ],
   "env": {
-    "VITE_API_URL": "https://143.110.253.120:5000/api",
-    "REACT_APP_API_URL": "https://143.110.253.120:5000/api",
+    "VITE_API_URL": "http://143.110.253.120:5000/api",
+    "REACT_APP_API_URL": "http://143.110.253.120:5000/api",
     "NODE_ENV": "production"
   }
 }
