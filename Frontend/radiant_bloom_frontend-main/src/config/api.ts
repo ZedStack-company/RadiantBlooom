@@ -3,17 +3,21 @@
 
 // Get API URL from environment variables with fallback
 const getApiUrl = (): string => {
-  // Use HTTPS for backend (now supports HTTPS)
+  // Force HTTPS for backend (now supports HTTPS)
   const backendUrl = 'https://143.110.253.120:5000/api';
   
   // Check for Vite environment variable first (for Vite-based builds)
   if (import.meta.env.VITE_API_URL) {
-    return import.meta.env.VITE_API_URL;
+    // Convert HTTP to HTTPS if needed (backend now supports HTTPS)
+    const url = import.meta.env.VITE_API_URL;
+    return url.replace('http://', 'https://');
   }
   
   // Check for React environment variable (for Create React App compatibility)
   if (import.meta.env.REACT_APP_API_URL) {
-    return import.meta.env.REACT_APP_API_URL;
+    // Convert HTTP to HTTPS if needed (backend now supports HTTPS)
+    const url = import.meta.env.REACT_APP_API_URL;
+    return url.replace('http://', 'https://');
   }
   
   // Check if we're in production mode
@@ -91,12 +95,17 @@ export const buildApiUrl = (endpoint: string): string => {
   return `${API_BASE_URL}${endpoint}`;
 };
 
-// Debug information (only in development)
-if (import.meta.env.DEV) {
-  console.log('🔧 API Configuration:', {
-    API_BASE_URL,
+// Debug information (always show in production for troubleshooting)
+console.log('🔧 API Configuration Debug:', {
+  API_BASE_URL,
+  Environment: {
     NODE_ENV: import.meta.env.NODE_ENV,
+    MODE: import.meta.env.MODE,
+    PROD: import.meta.env.PROD,
+    VERCEL: import.meta.env.VERCEL,
     VITE_API_URL: import.meta.env.VITE_API_URL,
     REACT_APP_API_URL: import.meta.env.REACT_APP_API_URL
-  });
-}
+  },
+  '✅ Using HTTPS': API_BASE_URL.startsWith('https://'),
+  '⚠️ WARNING: API URL is not HTTPS! This will cause Mixed Content errors.': !API_BASE_URL.startsWith('https://')
+});
