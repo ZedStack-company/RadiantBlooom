@@ -14,6 +14,7 @@ router.get('/product/:productId', (req, res) => {
 
 // Protected routes
 router.use(protect);
+//this is not only post request
 
 router.post('/', (req, res) => {
   res.json({ message: 'Create review - to be implemented' });
