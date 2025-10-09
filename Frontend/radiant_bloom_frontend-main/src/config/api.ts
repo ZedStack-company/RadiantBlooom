@@ -3,28 +3,11 @@
 
 // Get API URL from environment variables with fallback
 const getApiUrl = (): string => {
-  // Temporarily use HTTP while debugging HTTPS issues
+  // Force HTTP for backend (HTTPS is having issues)
   const backendUrl = 'http://143.110.253.120:5000/api';
   
-  // Check for Vite environment variable first (for Vite-based builds)
-  if (import.meta.env.VITE_API_URL) {
-    // Use the environment variable as-is for now
-    return import.meta.env.VITE_API_URL;
-  }
-  
-  // Check for React environment variable (for Create React App compatibility)
-  if (import.meta.env.REACT_APP_API_URL) {
-    // Use the environment variable as-is for now
-    return import.meta.env.REACT_APP_API_URL;
-  }
-  
-  // Check if we're in production mode
-  if (import.meta.env.PROD || import.meta.env.MODE === 'production') {
-    return backendUrl;
-  }
-  
-  // Check if we're on Vercel (Vercel sets VERCEL environment variable)
-  if (import.meta.env.VERCEL) {
+  // Always use HTTP for production (HTTPS backend has SSL issues)
+  if (import.meta.env.PROD || import.meta.env.MODE === 'production' || import.meta.env.VERCEL) {
     return backendUrl;
   }
   
